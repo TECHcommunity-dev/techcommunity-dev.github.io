@@ -22,3 +22,13 @@ request.onload = function () {
 
 // Send request
 request.send();
+
+
+
+
+
+//flip card
+var card = document.querySelector('.card');
+card.addEventListener( 'click', function() {
+  card.classList.toggle('is-flipped');
+});
