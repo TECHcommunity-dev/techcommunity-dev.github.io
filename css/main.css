@@ -6,7 +6,7 @@ body {
   max-width: 1024px;
 }
 .headerbgimage{
-	background-image: url("../img/sagbanner.jpg");
+	background-image: "../img/sagbanner.jpg";
 }
 
 
