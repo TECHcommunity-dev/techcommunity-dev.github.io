@@ -5,7 +5,9 @@ body {
 .container-fluid {
   max-width: 1024px;
 }
-
+.headerbgimage{
+	background-image: url("../img/sagbanner.jpg");
+}
 
 
 
