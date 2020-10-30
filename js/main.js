@@ -2,7 +2,7 @@
 var request = new XMLHttpRequest()
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://api.github.com/users/sandeeplati/repos', true)
+request.open('GET', 'https://api.github.com/orgs/softwareag/repos', true)
 
 request.onload = function () {
   // Begin accessing JSON data here
