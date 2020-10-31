@@ -35,32 +35,40 @@
 
 <div class="container-fluid" style="padding-top:60px;">
   <div class="row">
-    <div class="col-lg-10">
-      <div class="form-group">
-        <div class="col-sm-4">
+    <div class="col">
+      <div class="form-group" style="float: right;">
 
           <input class="form-control" id="myInput" placeholder="Search..." type="text">
 
+      </div>
+
+    </div>
+  </div>
+
+
+    <div class="row" id="myrepos">
+
+      <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="reporecord in allrows ">
+        <div>
+          <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
+          <div> {{ reporecord.name }}</div>
         </div>
+
+
+        <div class="d-flex bottonBoxBig mb-3">
+          <div class="flex-fill bg-info bottonBoxSmall">
+            <label>{{getData(reporecord.updated_at)}}</label>
+          </div>
+          <div class="flex-fill bg-warning bottonBoxSmall"> <label>{{ reporecord.watchers }}</label>  </div>
+          <div class=" flex-fill bg-info bottonBoxSmall">
+              <a href="{{reporecord.url}}" target="_blank"> >>> </a>
+          </div>
+        </div>
+
       </div>
 
-    </div>
-  </div>
-
-  <div>
-
-
-
-    <div class="row ">
-
-      <div ng-repeat="reporecord in allrows" class="connbgimage col-sm">
-          <div> {{ reporecord.id }}</div>
-      </div>
 
     </div>
-
-
-  </div>
 
 
 

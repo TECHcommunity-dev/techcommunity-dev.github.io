@@ -9,7 +9,36 @@ body {
 	background-image: url("../img/sagbanner.jpg");
 }
 
-.connbgimage(
+.connbg-image{
     background-image: url("../img/sagtc.jpg");
-)
+    height:80px;
+}
 
+.bottonBoxBig{
+    margin-top: 10px;
+}
+.bottonBoxSmall{
+    margin: 1px;
+    padding-top: 3px;
+}
+
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}

@@ -2,10 +2,6 @@
 console.log("sandeep");
 //https://api.github.com/orgs/softwareag/repos"
 
-	var objectName_u = "Cases_1";
-	var currentPagename_u = "currentpage.jsp";
-	var siteName_u = "sitename";
-	var hostname = "";
 
 	var app = angular.module('cetApp', []);
 	app.controller('cetCtrl', function($scope,$http,$window, $location, $anchorScroll, $timeout) {
@@ -18,21 +14,29 @@ console.log("sandeep");
   		}
  		$http(reposinfo).then(function(response){
             $scope.allrows =response.data;
-            console.log($scope.allrows);
+           // console.log($scope.allrows);
 
   		}, function(){alert("failed in call1");});
 
+    //substring
+  $scope.getData = function (updatedDate) {
+          return updatedDate.substr(0, 10);;
 
-
+      }
 
 	});
+
+
 
 
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
+    $("#myrepos div").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
 });
+
+
+
