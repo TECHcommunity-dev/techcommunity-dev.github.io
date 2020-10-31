@@ -39,7 +39,7 @@
       <div class="form-group" style="float: right;">
 
           <input class="form-control" id="myInput" placeholder="Search..." type="text">
-
+        <label>Total Count : {{ totalCount}}</label>
       </div>
 
     </div>
@@ -50,7 +50,11 @@
 
       <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="reporecord in allrows ">
         <div>
-          <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
+
+          <a href="{{reporecord.html_url}}" target="_blank">
+            <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
+          </a>
+
           <div> {{ reporecord.name }}</div>
         </div>
 
@@ -61,7 +65,7 @@
           </div>
           <div class="flex-fill bg-warning bottonBoxSmall"> <label>{{ reporecord.watchers }}</label>  </div>
           <div class=" flex-fill bg-info bottonBoxSmall">
-              <a href="{{reporecord.url}}" target="_blank"> >>> </a>
+              <a href="{{reporecord.html_url}}" target="_blank"> >>> </a>
           </div>
         </div>
 

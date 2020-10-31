@@ -1,6 +1,7 @@
 // Create a request variable and assign a new XMLHttpRequest object to it.
 console.log("sandeep");
 //https://api.github.com/orgs/softwareag/repos"
+//search : /search/repositories  https://api.github.com/search/repositories?q=
 
 
 	var app = angular.module('cetApp', []);
@@ -9,12 +10,14 @@ console.log("sandeep");
 
   		var reposinfo = {
  			method: 'GET',
-    		url: "https://api.github.com/orgs/softwareag/repos",
+    		url: "https://api.github.com/search/repositories?q=org:softwareag+webmethods+in:name+topic:webmethods",
  			headers: {"Content-Type": "application/json"}
   		}
  		$http(reposinfo).then(function(response){
-            $scope.allrows =response.data;
-           // console.log($scope.allrows);
+           $scope.allrows =response.data.items;
+           $scope.totalCount=response.data.total_count;
+           console.log($scope.totalCount);
+
 
   		}, function(){alert("failed in call1");});
 
