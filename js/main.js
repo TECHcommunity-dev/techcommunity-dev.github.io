@@ -1,34 +1,38 @@
 // Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest()
+console.log("sandeep");
+//https://api.github.com/orgs/softwareag/repos"
 
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://api.github.com/orgs/softwareag/repos', true)
+	var objectName_u = "Cases_1";
+	var currentPagename_u = "currentpage.jsp";
+	var siteName_u = "sitename";
+	var hostname = "";
 
-request.onload = function () {
-  // Begin accessing JSON data here
-  var data = JSON.parse(this.response);
+	var app = angular.module('cetApp', []);
+	app.controller('cetCtrl', function($scope,$http,$window, $location, $anchorScroll, $timeout) {
 
-  var statusHTML = '';
-  $.each(data, function(i, status) {
-    statusHTML += '<tr>';
-    statusHTML += '<td>' + status.id + '</td>';
-    statusHTML += '<td>' + status.name + '</td>';
-    statusHTML += '<td>' + status.html_url + '</td>';
-    statusHTML += '<td>' + status.language + '</td>';
-    statusHTML += '</tr>';
+
+  		var reposinfo = {
+ 			method: 'GET',
+    		url: "https://api.github.com/orgs/softwareag/repos",
+ 			headers: {"Content-Type": "application/json"}
+  		}
+ 		$http(reposinfo).then(function(response){
+            $scope.allrows =response.data;
+            console.log($scope.allrows);
+
+  		}, function(){alert("failed in call1");});
+
+
+
+
+	});
+
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
   });
-  $('tbody').html(statusHTML);
-}
-
-// Send request
-request.send();
-
-
-
-
-
-//flip card
-var card = document.querySelector('.card');
-card.addEventListener( 'click', function() {
-  card.classList.toggle('is-flipped');
 });

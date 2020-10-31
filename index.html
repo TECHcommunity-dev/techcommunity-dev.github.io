@@ -12,52 +12,63 @@
   <link href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap" rel="stylesheet">
   <!-- custom css -->
   <link rel="stylesheet" href="css/main.css">
-</head>
 
-<body>
-  <div class="container-fluid mt-3">
-    <!-- jumbotron -->
-    <div class="jumbotron jumbotron-fluid bg-info text-white headerbgimage">
-      <div class="container-fluid">
-        <h1 class="display-5">Connectors</h1>
-        <p class="lead">CloudStreams Connectors and documentation can be downloaded here.</p>
-      </div>
-    </div>
-    <!-- responsive table -->
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr class="table-info">
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">URL</th>
-            <th scope="col">Language</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr> 
-          -->
-        </tbody>
-      </table>
-    </div>
-	<div class="scene scene--card">
-  <div class="card">
-    <div class="card__face card__face--front">front</div>
-    <div class="card__face card__face--back">back</div>
-  </div>
-</div>
-<p>Click card to flip.</p>
-  </div>
-  <!-- jquery cdn  -->
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <!-- custom js -->
   <script src="js/main.js"></script>
+
+
+</head>
+
+<body ng-app="cetApp" ng-controller="cetCtrl">
+
+<div class="container-fluid jumbotron jumbotron-fluid bg-info text-white mt-3 headerbgimage">
+  <div class="container-fluid">
+    <h1 class="display-5">Connectors</h1>
+    <p class="lead">CloudStreams Connectors and documentation can be downloaded here.</p>
+  </div>
+</div>
+
+
+<div class="container-fluid" style="padding-top:60px;">
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="form-group">
+        <div class="col-sm-4">
+
+          <input class="form-control" id="myInput" placeholder="Search..." type="text">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div>
+
+
+
+    <div class="row ">
+
+      <div ng-repeat="reporecord in allrows" class="connbgimage col-sm">
+          <div> {{ reporecord.id }}</div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
 </body>
 
 </html>
