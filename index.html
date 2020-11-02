@@ -2,23 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Connectors</title>
-  <!-- bootstrap 4 css -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- google font -->
-  <!-- custom css -->
-  <link rel="stylesheet" href="css/main.css">
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <!-- custom js -->
-  <script src="js/main.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Connectors</title>
+    <!-- bootstrap 4 css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- google font -->
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- custom js -->
+    <script src="js/main.js"></script>
 
 
 </head>
@@ -26,80 +22,67 @@
 <body ng-app="cetApp" ng-controller="cetCtrl">
 
 <div class="container-fluid jumbotron jumbotron-fluid bg-info text-white mt-3 headerbgimage">
-  <div class="container-fluid">
-    <h1 class="display-5">Connectors</h1>
-    <p class="lead">CloudStreams Connectors and documentation can be downloaded here.</p>
-  </div>
+    <div class="container-fluid">
+        <h1 class="display-5">Connectors</h1>
+        <p class="lead">CloudStreams Connectors and documentation can be downloaded here.</p>
+    </div>
 </div>
-
 
 
 <div class="w3-bar tab-header container-fluid">
-  <button class="w3-bar-item w3-button" onclick="connectorTabs('Connectors')">Connectors</button>
-  <button class="w3-bar-item w3-button" onclick="connectorTabs('Articles')">Articles</button>
-  </div>
-
-
-<div id="Articles" class="w3-container wmiotabtype container-fluid" style="display:none">
-  <h2>Articles</h2>
-  <p>webMethods.io Articles.</p>
+    <button class="w3-bar-item w3-button" onclick="connectorTabs('Connectors')">Connectors</button>
+    <button class="w3-bar-item w3-button" onclick="connectorTabs('Articles')">Articles</button>
 </div>
 
 
-<div id="Connectors" class="container-fluid wmiotabtype" >
-  <div class="row">
-    <div class="col">
-      <h2 class="display-5">Connectors</h2>
-      <p >CloudStreams Connectors and documentation can be downloaded here.</p>
-    </div>
-    <div class="col">
-      <div class="form-group" style="float: right; text-align: right;">
+<div id="Articles" class="w3-container wmiotabtype container-fluid" style="display:none">
+    <h2>Articles</h2>
+    <p>webMethods.io Articles.</p>
+</div>
 
-          <input class="form-control" id="myInput" placeholder="Search..." type="text">
-        <label>Total Count : {{ totalCount}}</label>
-      </div>
 
+<div id="Connectors" class="container-fluid wmiotabtype">
+    <div class="row">
+        <div class="col">
+            <h2 class="display-5">Connectors</h2>
+            <p>CloudStreams Connectors and documentation can be downloaded here.</p>
+        </div>
+        <div class="col">
+            <div class="form-group" style="float: right; text-align: right;">
+                <input class="form-control" type="text" ng-model="connSearch" placeholder="Search...">
+                <label>Total Count : {{ totalCount}}</label>
+            </div>
+
+        </div>
     </div>
-  </div>
 
 
     <div class="row" id="myrepos">
 
-      <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="reporecord in allrows ">
-        <div>
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="reporecord in allrows | filter:connSearch"">
+            <div data-toggle="tooltip" title="Take you to GitHub!">
 
-          <a href="{{reporecord.html_url}}" target="_blank">
-            <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
-          </a>
+                <a href="{{reporecord.html_url}}" target="_blank">
+                    <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
+                </a>
+                <div style="font-size: 14px; font-weight: bold; height: 32px;"> {{ reporecord.name }}</div>
+            </div>
 
-          <div style="font-size: 14px; font-weight: bold; height: 32px;"> {{ reporecord.name }}</div>
-        </div>
 
-
-        <div class="d-flex bottonBoxBig mb-3">
-                <div class="flex-fill bg-info bottonBoxSmallEnds">
-                  <label>{{getData(reporecord.updated_at)}}</label>
+            <div class="d-flex bottonBoxBig mb-3">
+                <div class="flex-fill bg-info bottonBoxSmallEnds" data-toggle="tooltip" title="Last updated">
+                    <label>{{getData(reporecord.updated_at)}}</label>
                 </div>
 
-               <div class="flex-fill bg-warning bottonBoxSmallMiddle"> <label>{{ reporecord.watchers }}</label>  </div>
-
-                <div class=" flex-fill bg-info bottonBoxSmallEnds">
+                <div class="flex-fill bg-warning bottonBoxSmallMiddle" data-toggle="tooltip" title="Watchers count">
+                    <label>{{ reporecord.watchers }}</label>
+                </div>
+                <div class=" flex-fill bg-info bottonBoxSmallEnds" data-toggle="tooltip" title="Take you to GitHub!">
                     <a href="{{reporecord.html_url}}" target="_blank"> >>> </a>
                 </div>
+            </div>
         </div>
-
-      </div>
-
-
     </div>
-
-
-
 </div>
-
-
-
-
 </body>
-
 </html>
