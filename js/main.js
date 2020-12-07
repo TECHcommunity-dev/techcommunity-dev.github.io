@@ -1,34 +1,47 @@
 // Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest()
+console.log("sandeep");
+//https://api.github.com/orgs/softwareag/repos"
+//search : /search/repositories  https://api.github.com/search/repositories?q=
 
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://api.github.com/orgs/softwareag/repos', true)
 
-request.onload = function () {
-  // Begin accessing JSON data here
-  var data = JSON.parse(this.response);
+	var app = angular.module('cetApp', []);
+	app.controller('cetCtrl', function($scope,$http,$window, $location, $anchorScroll, $timeout) {
 
-  var statusHTML = '';
-  $.each(data, function(i, status) {
-    statusHTML += '<tr>';
-    statusHTML += '<td>' + status.id + '</td>';
-    statusHTML += '<td>' + status.name + '</td>';
-    statusHTML += '<td>' + status.html_url + '</td>';
-    statusHTML += '<td>' + status.language + '</td>';
-    statusHTML += '</tr>';
-  });
-  $('tbody').html(statusHTML);
+
+  		var reposinfo = {
+ 			method: 'GET',
+    		url: "https://api.github.com/search/repositories?q=org:softwareag+webmethods+in:name+topic:webmethods",
+    		//https://api.github.com/repos/:owner/:repo/branches/:branch/protection
+    		//https://api.github.com/repos/sandeeplati/test_delete/branches/main/protection
+ 			headers: {"Content-Type": "application/json"}
+  		}
+ 		$http(reposinfo).then(function(response){
+           $scope.allrows =response.data.items;
+           $scope.totalCount=response.data.total_count;
+           console.log($scope.totalCount);
+
+
+  		}, function(){alert("failed in call1");});
+
+    //substring
+  $scope.getData = function (updatedDate) {
+          return updatedDate.substr(0, 10);;
+
+      }
+
+	});
+
+
+
+
+
+//tabls
+function connectorTabs(tabName) {
+  var i;
+  var x = document.getElementsByClassName("wmiotabtype");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
 }
 
-// Send request
-request.send();
-
-
-
-
-
-//flip card
-var card = document.querySelector('.card');
-card.addEventListener( 'click', function() {
-  card.classList.toggle('is-flipped');
-});

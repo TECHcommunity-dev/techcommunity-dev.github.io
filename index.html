@@ -2,62 +2,163 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Connectors</title>
-  <!-- bootstrap 4 css -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- google font -->
-  <link href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap" rel="stylesheet">
-  <!-- custom css -->
-  <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Connectors</title>
+    <!-- bootstrap 4 css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- google font -->
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- custom js -->
+    <script src="js/main.js"></script>
+
+
 </head>
 
-<body>
-  <div class="container-fluid mt-3">
-    <!-- jumbotron -->
-    <div class="jumbotron jumbotron-fluid bg-info text-white headerbgimage">
-      <div class="container-fluid">
-        <h1 class="display-5">Connectors</h1>
-        <p class="lead">CloudStreams Connectors and documentation can be downloaded here.</p>
-      </div>
+<body ng-app="cetApp" ng-controller="cetCtrl">
+
+<div class="container-fluid jumbotron jumbotron-fluid bg-info text-white mt-3 headerbgimage">
+    <div class="headerBlock">
+        <h1 class="display-5">webMethods.io Integration Connectors</h1>
+        <p class="lead">webMethods.io Integration Connectors and documentation can be downloaded here.</p>
     </div>
-    <!-- responsive table -->
-    <div class="table-responsive">
-      <table class="table table-bordered">
+</div>
+
+
+<div class="w3-bar tab-header container-fluid">
+    <button class="w3-bar-item w3-button" onclick="connectorTabs('Connectors')">SAG Connectors</button>
+    <button class="w3-bar-item w3-button" onclick="connectorTabs('CConnectors')">Community Connectors</button>
+    <button class="w3-bar-item w3-button" onclick="connectorTabs('Articles')">Articles</button>
+    <button class="w3-bar-item w3-button" onclick="connectorTabs('CDP')">Connector Developer Program</button>
+</div>
+
+
+<div id="Articles" class="w3-container wmiotabtype container-fluid" style="display:none">
+    <h2>Articles</h2>
+    <p>webMethods.io Articles.</p>
+    <div class=" flex-fill bg-info bottonBoxSmallEnds" data-toggle="tooltip" title="Take you to GitHub!">
+        <a href="https://github.com/CloudTroops/CloudStreams-Connector-Development" target="_blank"> CloudStreams Connector Development </a>
+    </div>
+</div>
+
+<div id="CDP" class="w3-container wmiotabtype container-fluid" style="display:none">
+    <h2>Partner Connectors</h2>
+    <p>Connector Developer Program</p>
+
+
+    <table class="table">
         <thead>
-          <tr class="table-info">
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">URL</th>
-            <th scope="col">Language</th>
-          </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Views</th>
+            <th scope="col">Go</th>
+        </tr>
         </thead>
         <tbody>
-          <!-- 
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr> 
-          -->
+        <tr>
+            <th scope="row">1</th>
+            <td> CloudStreams Connector Development
+            </td>
+            <td>10</td>
+            <td>  <div class=" flex-fill bg-info bottonBoxSmallEnds" data-toggle="tooltip" title="Take you to GitHub!">
+                <a href="https://github.com/CloudTroops/CloudStreams-Connector-Development" target="_blank"> Click here </a>
+            </div> </td>
+        </tr>
         </tbody>
-      </table>
-    </div>
-	<div class="scene scene--card">
-  <div class="card">
-    <div class="card__face card__face--front">front</div>
-    <div class="card__face card__face--back">back</div>
-  </div>
-</div>
-<p>Click card to flip.</p>
-  </div>
-  <!-- jquery cdn  -->
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <!-- custom js -->
-  <script src="js/main.js"></script>
-</body>
+    </table>
 
+
+
+</div>
+
+
+<div id="CConnectors" class="w3-container wmiotabtype container-fluid" style="display:none">
+    <h2>Community Connectors</h2>
+    <p>webMethods.io Integration Community Articles.</p>
+</div>
+
+
+<div id="Connectors" class="container-fluid wmiotabtype">
+    <div class="row">
+        <div class="col">
+            <h2 class="display-5">Software AG Built-in Connectors</h2>
+            <p>Software AG out of the box connectors.</p>
+        </div>
+        <div class="col">
+            
+                <label style="float: right;">Total Count : {{ totalCount}}</label>
+           
+        </div>
+    </div>
+
+
+    <div class="row myreposBlock" id="myrepos">
+
+
+        <div class="row" style="width: 100%; float: right; margin-top: 16px;">
+            <div class="col">
+                <div class="form-group" style="float: right; text-align: right;">
+                    <input class="form-control" type="text" ng-model="connSearch" placeholder="Search...">
+                </div>
+    
+            </div>
+        </div>
+        <div class="row" style="margin-right: 0px !important; margin-left: 0px !important;">
+        <div class="col-lg-4 col-md-4 col-sm-6  repoBlock1" ng-repeat="reporecord in allrows | filter:connSearch"">
+            <div class="d-flex  mb-3" style="padding-top: 9px;">
+                <div style="font-size: 14px; font-weight: bold; height: 32px; color: #011E3C; max-width: 60%;"> {{ reporecord.name }}</div>
+
+                <div  style="margin-left:10px" data-toggle="tooltip" title="Watchers count">
+                    <img style="height: 24px;" ng-src="../connectors/img/star.png">{{ reporecord.watchers }}</img> 
+                </div>
+                <div style="margin-left:10px" data-toggle="tooltip" title="Take you to GitHub!">
+                    <img style="height: 24px;" ng-src="../connectors/img/fork.png">{{ reporecord.watchers }}</img> 
+                </div>
+            </div>
+
+
+
+            <div data-toggle="tooltip" title="Take you to GitHub!" style="text-align: center;">
+
+                <a href="{{reporecord.html_url}}" target="_blank">
+                    <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
+                </a>
+                
+            </div>
+
+
+
+
+                <div class="container">
+                    <div class="row">
+                      <div class="col-sm" style="max-width: 47%; padding-top: 9px;">
+                        <a href="{{reporecord.html_url}}" target="_blank" style="padding: 10px;border-radius: 8px;border: 2px solid #011E3C;"> Repository</a>
+                    </div>
+                      <div class="col-sm" style="text-align: right; font-size: 12px;">
+                        <div class="row" >
+                            <div class="col-sm">
+                                <label>Category : Connectors</label>                           
+                             </div> 
+                          </div>
+                          <div class="row" >
+                            <div class="col-sm">
+                                <label>Language : Flow</label>                            
+                            </div> 
+                          </div>
+                    </div>
+
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
 </html>
