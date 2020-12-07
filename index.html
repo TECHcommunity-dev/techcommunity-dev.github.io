@@ -22,7 +22,7 @@
 <body ng-app="cetApp" ng-controller="cetCtrl">
 
 <div class="container-fluid jumbotron jumbotron-fluid bg-info text-white mt-3 headerbgimage">
-    <div class="container-fluid">
+    <div class="headerBlock">
         <h1 class="display-5">webMethods.io Integration Connectors</h1>
         <p class="lead">webMethods.io Integration Connectors and documentation can be downloaded here.</p>
     </div>
@@ -90,40 +90,74 @@
             <p>Software AG out of the box connectors.</p>
         </div>
         <div class="col">
-            <div class="form-group" style="float: right; text-align: right;">
-                <input class="form-control" type="text" ng-model="connSearch" placeholder="Search...">
-                <label>Total Count : {{ totalCount}}</label>
-            </div>
-
+            
+                <label style="float: right;">Total Count : {{ totalCount}}</label>
+           
         </div>
     </div>
 
 
-    <div class="row" id="myrepos">
+    <div class="row myreposBlock" id="myrepos">
 
-        <div class="col-lg-3 col-md-4 col-sm-6 text-center" ng-repeat="reporecord in allrows | filter:connSearch"">
-            <div data-toggle="tooltip" title="Take you to GitHub!">
+
+        <div class="row" style="width: 100%; float: right; margin-top: 16px;">
+            <div class="col">
+                <div class="form-group" style="float: right; text-align: right;">
+                    <input class="form-control" type="text" ng-model="connSearch" placeholder="Search...">
+                </div>
+    
+            </div>
+        </div>
+        <div class="row" style="margin-right: 0px !important; margin-left: 0px !important;">
+        <div class="col-lg-4 col-md-4 col-sm-6  repoBlock1" ng-repeat="reporecord in allrows | filter:connSearch"">
+            <div class="d-flex  mb-3" style="padding-top: 9px;">
+                <div style="font-size: 14px; font-weight: bold; height: 32px; color: #011E3C; max-width: 60%;"> {{ reporecord.name }}</div>
+
+                <div  style="margin-left:10px" data-toggle="tooltip" title="Watchers count">
+                    <img style="height: 24px;" ng-src="../connectors/img/star.png">{{ reporecord.watchers }}</img> 
+                </div>
+                <div style="margin-left:10px" data-toggle="tooltip" title="Take you to GitHub!">
+                    <img style="height: 24px;" ng-src="../connectors/img/fork.png">{{ reporecord.watchers }}</img> 
+                </div>
+            </div>
+
+
+
+            <div data-toggle="tooltip" title="Take you to GitHub!" style="text-align: center;">
 
                 <a href="{{reporecord.html_url}}" target="_blank">
                     <img class="rounded-circle my-3 connbg-image" ng-src="../connectors/img/sagtc.jpg">
                 </a>
-                <div style="font-size: 14px; font-weight: bold; height: 32px;"> {{ reporecord.name }}</div>
+                
             </div>
 
 
-            <div class="d-flex bottonBoxBig mb-3">
-                <div class="flex-fill bg-info bottonBoxSmallEnds" data-toggle="tooltip" title="Last updated">
-                    <label>{{getData(reporecord.updated_at)}}</label>
-                </div>
 
-                <div class="flex-fill bg-warning bottonBoxSmallMiddle" data-toggle="tooltip" title="Watchers count">
-                    <label>{{ reporecord.watchers }}</label>
-                </div>
-                <div class=" flex-fill bg-info bottonBoxSmallEnds" data-toggle="tooltip" title="Take you to GitHub!">
-                    <a href="{{reporecord.html_url}}" target="_blank"> >>> </a>
-                </div>
+
+                <div class="container">
+                    <div class="row">
+                      <div class="col-sm" style="max-width: 47%; padding-top: 9px;">
+                        <a href="{{reporecord.html_url}}" target="_blank" style="padding: 10px;border-radius: 8px;border: 2px solid #011E3C;"> Repository</a>
+                    </div>
+                      <div class="col-sm" style="text-align: right; font-size: 12px;">
+                        <div class="row" >
+                            <div class="col-sm">
+                                <label>Category : Connectors</label>                           
+                             </div> 
+                          </div>
+                          <div class="row" >
+                            <div class="col-sm">
+                                <label>Language : Flow</label>                            
+                            </div> 
+                          </div>
+                    </div>
+
+                    </div>
+
+
             </div>
         </div>
+    </div>
     </div>
 </div>
 </body>
