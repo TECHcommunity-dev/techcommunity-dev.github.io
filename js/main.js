@@ -11,6 +11,8 @@ console.log("sandeep");
   		var reposinfo = {
  			method: 'GET',
     		url: "https://api.github.com/search/repositories?q=org:softwareag+webmethods+in:name+topic:webmethods",
+    		//https://api.github.com/repos/:owner/:repo/branches/:branch/protection
+    		//https://api.github.com/repos/sandeeplati/test_delete/branches/main/protection
  			headers: {"Content-Type": "application/json"}
   		}
  		$http(reposinfo).then(function(response){
